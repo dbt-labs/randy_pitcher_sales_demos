@@ -1,0 +1,10 @@
+config-version: 2
+
+name: 'tpch'
+version: '1.0.0'
+
+models:
+  tpch:
+    +materialized: view
+    marts:
+      +materialized: table

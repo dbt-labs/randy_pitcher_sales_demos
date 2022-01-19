@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customer dimensions table
+    columns:
+      - name: customer_key
+        description: Primary key on the customers table
+        tests:
+          - unique
+          - not_null
+      - name: region
+        tests:
+          - accepted_values:
+              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
+              severity: warn
+                
+  - name: dim_parts
+    columns:
+      - name: part_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_suppliers
+    columns:
+      - name: supplier_key
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_order_items
+    columns:
+      - name: order_item_key
+        tests:
+          - unique
+          - not_null
+                
+  - name: fct_orders
+    columns:
+      - name: order_key
+        tests:
+          - unique
+          - not_null
+      - name: customer_key
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_key
+              severity: error

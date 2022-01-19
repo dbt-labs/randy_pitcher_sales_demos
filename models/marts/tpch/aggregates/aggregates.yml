@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: monthly_gross_revenue
+    columns:
+      - name: ORDER_MONTH
+        tests:
+          - unique

@@ -1,0 +1,18 @@
+version: 2
+
+exposures:
+  - name: monthly_gross_revenue
+    description: Dashboard showing monthly gross revenue
+    tags: ['logistics']
+    
+    type: dashboard 
+    url: https://app.snowflake.com/us-west-2/zna84829/2021-08-12-tpch-monthly-gross-revenue-dBOt4xVYQ
+    
+    maturity: medium
+    
+    owner:
+      name: Randy Pitcher
+      email: randy.pitcher@fishtownanalytics.com
+
+    depends_on:
+      - ref('monthly_gross_revenue')
