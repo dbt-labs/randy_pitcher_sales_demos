@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: tpch
+    database: "{{target.database}}"
+    schema: "{{target.schema}}_DBT_TEST__AUDIT"
+    tables:
+        - name: MONTHLY_GROSS_REVENUE__ASSERT_FRESH_DATA
