@@ -7,6 +7,3 @@ SELECT
 FROM {{ref('fct_order_items')}}
 GROUP BY ORDER_MONTH
 ORDER BY ORDER_MONTH
-
-
-

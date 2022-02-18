@@ -1,7 +1,7 @@
 
 
 select 
-    'Hello, World!' as my_first_col, 
+    'Hello, World!' as hello, 
     1/1 as not_a_mistake,
-    current_timestamp as created_at
+    current_timestamp as created_atkj;lkj;lkj;lkj
 
