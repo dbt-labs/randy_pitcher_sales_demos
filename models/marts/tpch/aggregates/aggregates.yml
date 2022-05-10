@@ -5,4 +5,4 @@ models:
     columns:
       - name: ORDER_MONTH
         tests:
-          - not_null
+          - unique
