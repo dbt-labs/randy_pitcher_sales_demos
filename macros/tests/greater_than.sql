@@ -4,5 +4,5 @@
   from {{ model }}
 
   where
-    not {{ column_name }} < {{- "=" if inclusive }} {{ min_value }}
+    not {{ column_name }} > {{- "=" if inclusive }} {{ min_value }}
 {% endtest %}
