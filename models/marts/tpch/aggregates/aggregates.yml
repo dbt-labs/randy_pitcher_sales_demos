@@ -6,3 +6,8 @@ models:
       - name: ORDER_MONTH
         tests:
           - unique
+          - not_null
+      - name: GROSS_REVENUE
+        tests:
+          - not_null
+          - greater_than
