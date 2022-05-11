@@ -5,9 +5,11 @@ models:
     columns:
       - name: ORDER_MONTH
         tests:
-          - unique
           - not_null
       - name: GROSS_REVENUE
         tests:
           - not_null
           - greater_than
+      - name: REGION
+        tests:
+          - dbt_expectations.expect_column_values_to_have_consistent_casing
