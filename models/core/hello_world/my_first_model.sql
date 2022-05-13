@@ -7,8 +7,7 @@
 
 {{
     config(
-        schema='my_first_schema',
-        database='my_first_database'
+        schema='my_first_schema'
     )
 }}
 
