@@ -7,5 +7,4 @@ models:
   tpch:
     +materialized: view
     marts:
-      +schema: marts
       +materialized: table
