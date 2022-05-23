@@ -20,6 +20,8 @@ renamed as (
 
     from source
 
+    where is_deleted = false
+
 )
 
 select * from renamed
