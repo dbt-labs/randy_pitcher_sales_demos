@@ -5,6 +5,6 @@ version: '1.0.0'
 
 models:
   tpch:
-    +materialized: table
+    +materialized: view
     marts:
       +materialized: table
