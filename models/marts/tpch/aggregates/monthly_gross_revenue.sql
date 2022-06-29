@@ -1,13 +1,13 @@
 
 
 SELECT
-    region,
+    UPPER(region) as region,
     DATE_TRUNC(MONTH, ORDER_DATE) AS ORDER_MONTH,
     SUM(GROSS_ITEM_SALES_AMOUNT)  AS GROSS_REVENUE
 
 FROM {{ref('fct_order_items')}}
-GROUP BY region, ORDER_MONTH
-ORDER BY ORDER_MONTH, region
+GROUP BY UPPER(region), ORDER_MONTH
+ORDER BY ORDER_MONTH, UPPER(region)
 
 
 
