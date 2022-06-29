@@ -5,7 +5,6 @@ models:
     columns:
       - name: ORDER_MONTH
         tests:
-          - unique
           - not_null
       - name: GROSS_REVENUE
         tests:
