@@ -4,7 +4,7 @@ with source as (select * from {{ source('tpch', 'orders') }}),
 RENAMED AS (
     SELECT
     
-        O_ORDERKEY AS ORDER_KEY,
+        O_ORDERKEY AS ORDER_KEYYYYYY,
         O_CUSTKEY AS CUSTOMER_KEY,
         O_ORDERSTATUS AS STATUS_CODE,
         O_TOTALPRICE AS TOTAL_PRICE,
