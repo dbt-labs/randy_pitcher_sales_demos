@@ -5,6 +5,7 @@ version: '1.0.0'
 
 models:
   tpch:
-    +materialized: view
+    +materialized: table
+    +transient: false
     marts:
       +materialized: table
