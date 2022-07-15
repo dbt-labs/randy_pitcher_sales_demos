@@ -1,14 +1,4 @@
 {%- macro generate_schema_name(custom_schema_name, node) -%}
-    {%- set log_msg -%}
-        generating custom schema:
-            node.identifier: {{node.identifier}}
-            target.name: {{target.name}}
-            target.schema: {{target.schema}}
-            custom_schema_name: {{custom_schema_name}}
-
-    {%- endset -%}
-    {{ log(log_msg, info=True) }}
-
     {% if target.name == 'default' %}
         {{target.schema}}{{ '_' ~ custom_schema_name if custom_schema_name else '' }}
     {% elif target.name == 'pr_testing' %}
