@@ -10,4 +10,3 @@ GROUP BY region, ORDER_MONTH
 ORDER BY ORDER_MONTH, region
 
 
-
