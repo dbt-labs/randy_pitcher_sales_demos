@@ -48,3 +48,20 @@ models:
               to: ref('dim_customers')
               field: customer_key
               severity: error
+  
+  - name: order_items
+    tags:
+      - output_table_type|orders
+    columns:
+      - name: order_item_key
+        tests:
+          - unique
+          - not_null
+                
+  - name: part_suppliers
+    columns:
+      - name: part_supplier_key
+        tests:
+          - unique
+          - not_null
+          
