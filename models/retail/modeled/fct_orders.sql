@@ -2,7 +2,7 @@
 
 
 WITH 
-ORDERS     AS (SELECT * FROM {{ ref('stg_tpch_orders') }}),
+ORDERS     AS (SELECT * FROM {{ ref('stg_orders') }}),
 ORDER_ITEM AS (SELECT * FROM {{ ref('order_items') }}),
 
 

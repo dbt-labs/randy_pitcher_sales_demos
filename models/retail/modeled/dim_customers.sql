@@ -1,9 +1,9 @@
 {{ config(materialized = 'table') }}
 
 WITH 
-CUSTOMER AS (SELECT * FROM {{ ref('stg_tpch_customers') }}),
-NATION   AS (SELECT * FROM {{ ref('stg_tpch_nations') }}),
-REGION   AS (SELECT * FROM {{ ref('stg_tpch_regions') }}),
+CUSTOMER AS (SELECT * FROM {{ ref('stg_customers') }}),
+NATION   AS (SELECT * FROM {{ ref('stg_nations') }}),
+REGION   AS (SELECT * FROM {{ ref('stg_regions') }}),
 
 
 FINAL AS (

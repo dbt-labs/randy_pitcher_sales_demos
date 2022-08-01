@@ -1,10 +1,3 @@
-{{
-    config(
-        materialized = 'table',
-        tags = ['finance', 'logistics']
-    )
-}}
-
 WITH
 
 ORDER_ITEMS_WITHOUT_REGION AS (

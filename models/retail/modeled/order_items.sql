@@ -1,7 +1,7 @@
 WITH 
 
-ORDERS    AS (SELECT * FROM {{ ref('stg_tpch_orders') }}),
-LINE_ITEM AS (SELECT * FROM {{ ref('stg_tpch_line_items') }})
+ORDERS    AS (SELECT * FROM {{ ref('stg_orders') }}),
+LINE_ITEM AS (SELECT * FROM {{ ref('stg_line_items') }})
 
 SELECT 
     LINE_ITEM.ORDER_ITEM_KEY,
