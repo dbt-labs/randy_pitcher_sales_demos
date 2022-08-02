@@ -1,12 +1,17 @@
 
 
-SELECT
-    DATE_TRUNC(MONTH, ORDER_DATE) AS ORDER_MONTH,
-    SUM(GROSS_ITEM_SALES_AMOUNT)  AS GROSS_REVENUE
+select
+    date_trunc(month, order_date) as order_month,
+    sum(gross_item_sales_amount)  as gross_revenue
 
-FROM {{ref('fct_order_items')}}
-GROUP BY ORDER_MONTH
-ORDER BY ORDER_MONTH
+from 
+    {{ref('fct_order_items')}}
+
+group by 
+    order_month
+
+order by 
+    order_month
 
 
 
