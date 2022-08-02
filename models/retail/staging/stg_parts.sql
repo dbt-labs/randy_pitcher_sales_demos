@@ -10,4 +10,4 @@ select
     p_comment     as comment
 
 from 
-    {{ source('retail', 'parts') }}
+    {{ source('retail', 'part') }}
