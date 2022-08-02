@@ -1,0 +1,52 @@
+version: 2
+
+exposures:
+  - name: monthly_gross_revenue
+    description: Dashboard showing monthly gross revenue
+    type: dashboard 
+    tags: 
+      - retail
+    url: https://app.snowflake.com/us-west-2/zna84829/2021-08-12-tpch-monthly-gross-revenue-dBOt4xVYQ
+    
+    owner:
+      name: Doctor Strange
+      email: strange@thanos.com
+
+    depends_on:
+      - ref('monthly_gross_revenue')
+
+
+models:
+  - name: monthly_gross_revenue
+    columns:
+      - name: ORDER_MONTH
+        tests:
+          - unique
+          - not_null
+      - name: GROSS_REVENUE
+        tests:
+          - not_null
+          - greater_than
+
+metrics:
+  - name:  Number of Customers
+    label: Customers
+    tags: 
+      - retail
+    model: ref('dim_customers')
+    description: "The number of customers"
+
+    type: count
+
+    dimensions:
+      - market_segment
+      - nation
+      - region
+    
+    filters:
+      - field: account_balance
+        operator: '>'
+        value: '0'
+      - field: name
+        operator: '!='
+        value: ''
