@@ -4,6 +4,8 @@ sources:
   - name: retail
     database: raw
     schema: tpch_sf001
+    tags: 
+      - retail
     tables:
       - name: orders
         description: main order tracking table

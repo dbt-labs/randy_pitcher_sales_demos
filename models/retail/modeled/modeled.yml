@@ -50,8 +50,6 @@ models:
               severity: error
   
   - name: order_items
-    tags:
-      - output_table_type|orders
     columns:
       - name: order_item_key
         tests:

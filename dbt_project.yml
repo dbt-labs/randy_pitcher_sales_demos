@@ -8,8 +8,15 @@ models:
     +materialized: view
 
     retail:
+      +tags: retail
       marts:
         +materialized: table
+
+    hello_world:
+      +tags: hello_world
+
+    utils:
+      +tags: utils
 
 
         
