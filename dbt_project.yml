@@ -1,10 +1,15 @@
 config-version: 2
 
-name: 'tpch'
+name: 'acme'
 version: '1.0.0'
 
 models:
-  tpch:
+  acme:
     +materialized: view
-    marts:
-      +materialized: table
+
+    retail:
+      marts:
+        +materialized: table
+
+
+        
