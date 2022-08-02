@@ -27,3 +27,26 @@ models:
         tests:
           - not_null
           - greater_than
+
+metrics:
+  - name:  Number of Customers
+    label: Customers
+    tags: 
+      - retail
+    model: ref('dim_customers')
+    description: "The number of customers"
+
+    type: count
+
+    dimensions:
+      - market_segment
+      - nation
+      - region
+    
+    filters:
+      - field: account_balance
+        operator: '>'
+        value: '0'
+      - field: name
+        operator: '!='
+        value: ''
