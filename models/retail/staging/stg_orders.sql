@@ -1,20 +1,12 @@
-with source as (select * from {{ source('tpch', 'orders') }}),
+select
+    o_orderkey      as order_key,
+    o_custkey       as customer_key,
+    o_orderstatus   as status_code,
+    o_totalprice    as total_price,
+    o_orderdate     as order_date,
+    o_orderpriority as priority_code,
+    o_clerk         as clerk_name,
+    o_shippriority  as ship_priority
 
-
-RENAMED AS (
-    SELECT
-    
-        O_ORDERKEY AS ORDER_KEY,
-        O_CUSTKEY AS CUSTOMER_KEY,
-        O_ORDERSTATUS AS STATUS_CODE,
-        O_TOTALPRICE AS TOTAL_PRICE,
-        O_ORDERDATE AS ORDER_DATE,
-        O_ORDERPRIORITY AS PRIORITY_CODE,
-        O_CLERK AS CLERK_NAME,
-        O_SHIPPRIORITY AS SHIP_PRIORITY
-
-    FROM SOURCE
-
-)
-
-SELECT * FROM RENAMED
+from 
+    {{ source('retail', 'orders') }}

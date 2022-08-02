@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: tpch
+  - name: retail
     database: raw
     schema: tpch_sf001
     tables:
@@ -19,7 +19,7 @@ sources:
             description: Foreign Key to C_CUSTKEY
             tests:
               - relationships:
-                  to: source('tpch', 'customer')
+                  to: source('retail', 'customer')
                   field: c_custkey
           - name: o_orderstatus
           - name: o_totalprice
@@ -52,19 +52,19 @@ sources:
             description: Foreign Key to O_ORDERKEY
             tests:
               - relationships:
-                  to: source('tpch', 'orders')
+                  to: source('retail', 'orders')
                   field: o_orderkey
           - name: l_partkey
             description:  Foreign key to P_PARTKEY, first part of the compound Foreign Key to (PS_PARTKEY,PS_SUPPKEY) with L_SUPPKEY
             tests:
               - relationships:
-                  to: source('tpch', 'part')
+                  to: source('retail', 'part')
                   field: p_partkey
           - name: l_suppkey
             description: Foreign key to S_SUPPKEY, second part of the compound Foreign Key to (PS_PARTKEY, PS_SUPPKEY) with L_PARTKEY
             tests:
               - relationships:
-                  to: source('tpch', 'supplier')
+                  to: source('retail', 'supplier')
                   field: s_suppkey
           - name: l_linenumber
           - name: l_quantity
@@ -94,7 +94,7 @@ sources:
             description: Foreign Key to R_REGIONKEY
             tests:
               - relationships:
-                  to: source('tpch', 'region')
+                  to: source('retail', 'region')
                   field: r_regionkey
           - name: n_comment
 
@@ -122,13 +122,13 @@ sources:
             description: Foreign Key to P_PARTKEY
             tests:
               - relationships:
-                  to: source('tpch', 'part')
+                  to: source('retail', 'part')
                   field: p_partkey
           - name: ps_suppkey
             description: Foreign Key to S_SUPPKEY
             tests:
               - relationships:
-                  to: source('tpch', 'supplier')
+                  to: source('retail', 'supplier')
                   field: s_suppkey
           - name: ps_availqty
           - name: ps_supplycost
@@ -161,7 +161,7 @@ sources:
             description: Foreign Key to N_NATIONKEY
             tests:
               - relationships:
-                  to: source('tpch', 'nation')
+                  to: source('retail', 'nation')
                   field: n_nationkey
           - name: s_phone
           - name: s_acctbal
