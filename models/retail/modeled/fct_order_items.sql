@@ -1,3 +1,11 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='order_item_key',
+        incremental_key='order_date'
+    )
+}}
+
 
 select 
     order_item.order_item_key,
