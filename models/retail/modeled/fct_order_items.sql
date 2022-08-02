@@ -1,43 +1,38 @@
-WITH
 
-ORDER_ITEMS_WITHOUT_REGION AS (
-    SELECT 
-        ORDER_ITEM.ORDER_ITEM_KEY,
-        ORDER_ITEM.ORDER_KEY,
-        ORDER_ITEM.ORDER_DATE,
-        ORDER_ITEM.CUSTOMER_KEY,
-        ORDER_ITEM.PART_KEY,
-        ORDER_ITEM.SUPPLIER_KEY,
-        ORDER_ITEM.ORDER_ITEM_STATUS_CODE,
-        ORDER_ITEM.RETURN_FLAG,
-        ORDER_ITEM.LINE_NUMBER,
-        ORDER_ITEM.SHIP_DATE,
-        ORDER_ITEM.COMMIT_DATE,
-        ORDER_ITEM.RECEIPT_DATE,
-        REGEXP_REPLACE(ORDER_ITEM.SHIP_MODE, '\\s', '_') AS SHIP_MODE,
-        PART_SUPPLIER.COST AS SUPPLIER_COST,
-        ORDER_ITEM.BASE_PRICE,
-        ORDER_ITEM.DISCOUNT_PERCENTAGE,
-        ORDER_ITEM.DISCOUNTED_PRICE,
-        ORDER_ITEM.TAX_RATE,
-        1 AS ORDER_ITEM_COUNT,
-        ORDER_ITEM.QUANTITY,
-        ORDER_ITEM.GROSS_ITEM_SALES_AMOUNT,
-        ORDER_ITEM.DISCOUNTED_ITEM_SALES_AMOUNT,
-        ORDER_ITEM.ITEM_DISCOUNT_AMOUNT,
-        ORDER_ITEM.ITEM_TAX_AMOUNT,
-        ORDER_ITEM.NET_ITEM_SALES_AMOUNT
+select 
+    order_item.order_item_key,
+    order_item.order_key,
+    order_item.order_date,
+    order_item.customer_key,
+    order_item.part_key,
+    order_item.supplier_key,
+    order_item.order_item_status_code,
+    order_item.return_flag,
+    order_item.line_number,
+    order_item.ship_date,
+    order_item.commit_date,
+    order_item.receipt_date,
+    order_item.base_price,
+    order_item.discount_percentage,
+    order_item.discounted_price,
+    order_item.tax_rate,
+    order_item.quantity,
+    order_item.gross_item_sales_amount,
+    order_item.discounted_item_sales_amount,
+    order_item.item_discount_amount,
+    order_item.item_tax_amount,
+    order_item.net_item_sales_amount,
 
-    FROM
-        {{ ref('order_items') }} ORDER_ITEM INNER JOIN {{ ref('part_suppliers') }} PART_SUPPLIER
-    ON 
-        ORDER_ITEM.PART_KEY = PART_SUPPLIER.PART_KEY AND 
-        ORDER_ITEM.SUPPLIER_KEY = PART_SUPPLIER.SUPPLIER_KEY
-)
+    part_supplier.cost as supplier_cost,
 
-SELECT 
-    ORDER_ITEMS_WITHOUT_REGION.*,
-    DIM_CUSTOMERS.REGION
+    customer.region,
 
-FROM ORDER_ITEMS_WITHOUT_REGION LEFT OUTER JOIN {{ref('dim_customers')}} DIM_CUSTOMERS
-ON ORDER_ITEMS_WITHOUT_REGION.CUSTOMER_KEY = DIM_CUSTOMERS.CUSTOMER_KEY
+    regexp_replace(order_item.ship_mode, '\\s', '_') as ship_mode,
+    1                                                as order_item_count
+
+from
+    {{ ref('order_items') }} order_item 
+    inner join {{ ref('part_suppliers') }} part_supplier
+    on order_item.part_key = part_supplier.part_key and order_item.supplier_key = part_supplier.supplier_key
+    left outer join {{ref('dim_customers')}} customer
+    on order_item.customer_key = customer.customer_key

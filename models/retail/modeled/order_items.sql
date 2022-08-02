@@ -1,36 +1,32 @@
-WITH 
+select 
+    line_item.order_item_key,
+    orders.order_key,
+    orders.customer_key,
+    line_item.part_key,
+    line_item.supplier_key,
+    orders.order_date,
+    line_item.return_flag,
+    line_item.line_number,
+    line_item.ship_date,
+    line_item.commit_date,
+    line_item.receipt_date,
+    line_item.ship_mode,
+    line_item.extended_price,
+    line_item.quantity,
+    line_item.discount_percentage,
+    line_item.tax_rate,
 
-ORDERS    AS (SELECT * FROM {{ ref('stg_orders') }}),
-LINE_ITEM AS (SELECT * FROM {{ ref('stg_line_items') }})
+    orders.status_code                                                    as order_status_code,
+    line_item.extended_price                                              as gross_item_sales_amount,
+    line_item.status_code                                                 as order_item_status_code,
+    
+    line_item.extended_price/nullif(line_item.quantity, 0)                as base_price,
+    base_price * (1 - line_item.discount_percentage)                      as discounted_price,
+    line_item.extended_price * (1 - line_item.discount_percentage)        as discounted_item_sales_amount,
+    -1 * line_item.extended_price * line_item.discount_percentage         as item_discount_amount,
+    (gross_item_sales_amount + item_discount_amount) * line_item.tax_rate as item_tax_amount,
+    gross_item_sales_amount + item_discount_amount + item_tax_amount      as net_item_sales_amount
 
-SELECT 
-    LINE_ITEM.ORDER_ITEM_KEY,
-    ORDERS.ORDER_KEY,
-    ORDERS.CUSTOMER_KEY,
-    LINE_ITEM.PART_KEY,
-    LINE_ITEM.SUPPLIER_KEY,
-    ORDERS.ORDER_DATE,
-    ORDERS.STATUS_CODE AS ORDER_STATUS_CODE,
-    LINE_ITEM.RETURN_FLAG,
-    LINE_ITEM.LINE_NUMBER,
-    LINE_ITEM.STATUS_CODE AS ORDER_ITEM_STATUS_CODE,
-    LINE_ITEM.SHIP_DATE,
-    LINE_ITEM.COMMIT_DATE,
-    LINE_ITEM.RECEIPT_DATE,
-    LINE_ITEM.SHIP_MODE,
-    LINE_ITEM.EXTENDED_PRICE,
-    LINE_ITEM.QUANTITY,
-    LINE_ITEM.EXTENDED_PRICE/NULLIF(LINE_ITEM.QUANTITY, 0) AS BASE_PRICE,
-    LINE_ITEM.DISCOUNT_PERCENTAGE,
-    BASE_PRICE * (1 - LINE_ITEM.DISCOUNT_PERCENTAGE) AS DISCOUNTED_PRICE,
-    LINE_ITEM.EXTENDED_PRICE AS GROSS_ITEM_SALES_AMOUNT,
-    LINE_ITEM.EXTENDED_PRICE * (1 - LINE_ITEM.DISCOUNT_PERCENTAGE) AS DISCOUNTED_ITEM_SALES_AMOUNT,
-    -1 * LINE_ITEM.EXTENDED_PRICE * LINE_ITEM.DISCOUNT_PERCENTAGE AS ITEM_DISCOUNT_AMOUNT,
-    LINE_ITEM.TAX_RATE,
-    (GROSS_ITEM_SALES_AMOUNT + ITEM_DISCOUNT_AMOUNT) * LINE_ITEM.TAX_RATE AS ITEM_TAX_AMOUNT,
-    GROSS_ITEM_SALES_AMOUNT + ITEM_DISCOUNT_AMOUNT + ITEM_TAX_AMOUNT AS NET_ITEM_SALES_AMOUNT
-
-FROM ORDERS INNER JOIN LINE_ITEM
-ON ORDERS.ORDER_KEY = LINE_ITEM.ORDER_KEY
-
-ORDER BY ORDERS.ORDER_DATE
+from 
+    {{ ref('stg_orders') }} orders inner join {{ ref('stg_line_items') }} line_item 
+    on orders.order_key = line_item.order_key

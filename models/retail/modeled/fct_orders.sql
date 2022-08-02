@@ -1,43 +1,43 @@
-{{config(materialized = 'table')}}
+with 
+
+order_     as (select * from {{ ref('stg_orders') }}),
+order_item as (select * from {{ ref('order_items') }}),
 
 
-WITH 
-ORDERS     AS (SELECT * FROM {{ ref('stg_orders') }}),
-ORDER_ITEM AS (SELECT * FROM {{ ref('order_items') }}),
-
-
-ORDER_ITEM_SUMMARY AS (
-    SELECT 
-        ORDER_KEY,
-        SUM(GROSS_ITEM_SALES_AMOUNT) AS GROSS_ITEM_SALES_AMOUNT,
-        SUM(ITEM_DISCOUNT_AMOUNT)    AS ITEM_DISCOUNT_AMOUNT,
-        SUM(ITEM_TAX_AMOUNT)         AS ITEM_TAX_AMOUNT,
-        SUM(NET_ITEM_SALES_AMOUNT)   AS NET_ITEM_SALES_AMOUNT
+order_item_summary as (
+    select 
+        order_key,
+        sum(gross_item_sales_amount) as gross_item_sales_amount,
+        sum(item_discount_amount)    as item_discount_amount,
+        sum(item_tax_amount)         as item_tax_amount,
+        sum(net_item_sales_amount)   as net_item_sales_amount
         
-    FROM ORDER_ITEM
-    GROUP BY ORDER_KEY
+    from order_item
+    group by order_key
 ),
 
 
-FINAL AS (
-    SELECT 
-        ORDERS.ORDER_KEY, 
-        ORDERS.ORDER_DATE,
-        ORDERS.CUSTOMER_KEY,
-        ORDERS.STATUS_CODE,
-        ORDERS.PRIORITY_CODE,
-        ORDERS.CLERK_NAME,
-        ORDERS.SHIP_PRIORITY,
-        1 AS ORDER_COUNT,                
-        ORDER_ITEM_SUMMARY.GROSS_ITEM_SALES_AMOUNT,
-        ORDER_ITEM_SUMMARY.ITEM_DISCOUNT_AMOUNT,
-        ORDER_ITEM_SUMMARY.ITEM_TAX_AMOUNT,
-        ORDER_ITEM_SUMMARY.NET_ITEM_SALES_AMOUNT
+final as (
+    select 
+        order_.order_key, 
+        order_.order_date,
+        order_.customer_key,
+        order_.status_code,
+        order_.priority_code,
+        order_.clerk_name,
+        order_.ship_priority,
+                        
+        order_item_summary.gross_item_sales_amount,
+        order_item_summary.item_discount_amount,
+        order_item_summary.item_tax_amount,
+        order_item_summary.net_item_sales_amount,
 
-    FROM ORDERS INNER JOIN ORDER_ITEM_SUMMARY
-    ON ORDERS.ORDER_KEY = ORDER_ITEM_SUMMARY.ORDER_KEY
+        1 as order_count
+
+    from 
+        order_ inner join order_item_summary
+        on order_.order_key = order_item_summary.order_key
 )
 
 
-SELECT * FROM FINAL
-ORDER BY ORDER_DATE
+select * from final

@@ -1,29 +1,17 @@
-{{ config(materialized = 'table') }}
+select 
+    customer.customer_key,
+    customer.name,
+    customer.address,
+    customer.phone_number,
+    customer.account_balance,
+    customer.market_segment,
 
-WITH 
-CUSTOMER AS (SELECT * FROM {{ ref('stg_customers') }}),
-NATION   AS (SELECT * FROM {{ ref('stg_nations') }}),
-REGION   AS (SELECT * FROM {{ ref('stg_regions') }}),
+    nation.name as nation,
+    region.name as region
 
-
-FINAL AS (
-    SELECT 
-        CUSTOMER.CUSTOMER_KEY,
-        CUSTOMER.NAME,
-        CUSTOMER.ADDRESS,
-        NATION.NAME AS NATION,
-        IFF(MOD(ACCOUNT_BALANCE/1, 2)::BOOLEAN, REGION.NAME, lower(REGION.NAME)) AS REGION,
-        CUSTOMER.PHONE_NUMBER,
-        CUSTOMER.ACCOUNT_BALANCE,
-        CUSTOMER.MARKET_SEGMENT
-    FROM
-        CUSTOMER
-        INNER JOIN NATION
-            ON CUSTOMER.NATION_KEY = NATION.NATION_KEY
-        INNER JOIN REGION
-            ON NATION.REGION_KEY = REGION.REGION_KEY
-)
-
-
-SELECT * FROM FINAL
-ORDER BY CUSTOMER_KEY
+from
+    {{ ref('stg_customers') }} customer 
+    inner join 
+    {{ ref('stg_nations') }} nation on customer.nation_key = nation.nation_key
+    inner join 
+    {{ ref('stg_regions') }} region on nation.region_key = region.region_key
