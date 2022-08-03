@@ -8,15 +8,21 @@ models:
     +materialized: view
 
     retail:
-      +tags: retail
+      +tags: 
+        - retail
+        - hourly
       marts:
         +materialized: table
 
     hello_world:
-      +tags: hello_world
+      +tags: 
+        - hello_world
+        - daily
 
     utils:
-      +tags: utils
+      +tags: 
+        - utils
+        - daily
 
 
         
