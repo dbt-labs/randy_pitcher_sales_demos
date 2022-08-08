@@ -1,16 +1,11 @@
 
 select
-    date_trunc(month, order_date) as order_month,
-    sum(gross_item_sales_amount)  as gross_revenue
-
+    ship_date as day,
+    sum(extended_price) as total_price
 from 
-    {{ref('fct_order_items')}}
+    {{ref('order_items')}}
 
-group by 
-    order_month
-
-order by 
-    order_month
+group by day
 
 
 
