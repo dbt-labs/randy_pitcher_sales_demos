@@ -9,8 +9,8 @@ exposures:
     url: https://app.snowflake.com/us-west-2/zna84829/2021-08-12-tpch-monthly-gross-revenue-dBOt4xVYQ
     
     owner:
-      name: Doctor Strange
-      email: strange@thanos.com
+      name: Darth Vader ⚡
+      email: vader@galactic_empire.com
 
     depends_on:
       - ref('monthly_gross_revenue')
@@ -29,8 +29,8 @@ models:
           - greater_than
 
 metrics:
-  - name:  Number of Customers
-    label: Customers
+  - name:  num_customers
+    label: Number of Customers
     tags: 
       - retail
     model: ref('dim_customers')
