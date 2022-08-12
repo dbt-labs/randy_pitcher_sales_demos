@@ -18,6 +18,7 @@ exposures:
 
 models:
   - name: monthly_gross_revenue
+    description: goodbye
     columns:
       - name: ORDER_MONTH
         tests:
