@@ -21,12 +21,14 @@ models:
     columns:
       - name: ORDER_MONTH
         tests:
-          - unique
           - not_null
       - name: GROSS_REVENUE
         tests:
           - not_null
           - greater_than
+      - name: region
+        tests:
+          - not_null
 
 metrics:
   - name:  num_customers
