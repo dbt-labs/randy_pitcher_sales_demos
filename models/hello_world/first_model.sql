@@ -1,6 +1,6 @@
 
 select 
     'Hello, World!'   as greeting, 
-    1/1               as numeric_value,
+    1/2               as float_value,
     current_timestamp as now
 
