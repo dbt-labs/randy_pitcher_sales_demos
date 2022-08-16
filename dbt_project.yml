@@ -5,7 +5,7 @@ version: '2.0.0'
 
 models:
   randy_pitcher_workspace:
-    +materialized: view
+    +materialized: table
 
     retail:
       +tags: 
