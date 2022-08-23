@@ -8,6 +8,7 @@ models:
     +materialized: view
 
     retail:
+      +schema: retail
       +tags: 
         - retail
         - hourly
