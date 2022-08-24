@@ -3,10 +3,6 @@ config-version: 2
 name: 'randy_pitcher_workspace'
 version: '2.0.0'
 
-query-comment: 
-  comment: "{{ generate_query_comment(node) }}"
-  append: true
-
 models:
   randy_pitcher_workspace:
     +materialized: view
