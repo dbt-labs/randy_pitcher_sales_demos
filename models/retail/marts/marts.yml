@@ -2,7 +2,8 @@ version: 2
 
 exposures:
   - name: monthly_gross_revenue
-    description: Dashboard showing monthly gross revenue
+    description: Monthly revenue - simple extract of month with a simple sum of revenue. Is this the right way to compute this?
+
     type: dashboard 
     tags: 
       - retail
