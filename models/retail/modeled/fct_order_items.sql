@@ -2,7 +2,8 @@
     config(
         materialized='incremental',
         unique_key='order_item_key',
-        incremental_key='order_date'
+        incremental_key='order_date',
+        on_schema_change='fail'
     )
 }}
 
@@ -35,8 +36,7 @@ select
 
     customer.region,
 
-    regexp_replace(order_item.ship_mode, '\\s', '_') as ship_mode,
-    1                                                as order_item_count
+    regexp_replace(order_item.ship_mode, '\\s', '_') as ship_mode
 
 from
     {{ ref('order_items') }} order_item 
