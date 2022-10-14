@@ -2,14 +2,15 @@ version: 2
 
 exposures:
   - name: monthly_gross_revenue_dashboard
+    label: "📈 Revenue Dashboard! 📈"
     description: Monthly revenue - simple extract of month with a simple sum of revenue.
 
     type: dashboard 
     url: http://localhost:13393/dashboard/1-revenue
     
     owner:
-      name: Darth Vader ⚡
-      email: a.skywalker@the_empire.com
+      name: Randy Pitcher ⚡
+      email: zeus@greek_gods.com
 
     depends_on:
       - ref('monthly_gross_revenue')
