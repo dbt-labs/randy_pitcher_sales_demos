@@ -1,5 +1,5 @@
 
 select 
-    1                 as numeric_value,
+    1                 as id,
     current_timestamp as processed_at
 
