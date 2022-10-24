@@ -19,9 +19,11 @@ exposures:
 models:
   - name: monthly_gross_revenue
     columns:
+      - name: region
+        tests:
+          - not_null
       - name: ORDER_MONTH
         tests:
-          - unique
           - not_null
       - name: GROSS_REVENUE
         tests:
