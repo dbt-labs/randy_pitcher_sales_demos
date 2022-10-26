@@ -33,7 +33,7 @@
 
         {% if incremental_key is not none %}
             -- this filter will only be applied on an incremental run
-            WHERE {{ incremental_key }} > (SELECT MAX(THIS.{{ incremental_key }}) FROM {{ this }} THIS)
+            WHERE {{ incremental_key }} >= (SELECT MAX(THIS.{{ incremental_key }}) FROM {{ this }} THIS)
         {% endif %}
       {% endset %}
 
