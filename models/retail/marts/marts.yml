@@ -1,17 +1,16 @@
 version: 2
 
 exposures:
-  - name: monthly_gross_revenue
-    description: Monthly revenue - simple extract of month with a simple sum of revenue. Is this the right way to compute this?
+  - name: monthly_gross_revenue_dashboard
+    label: "Revenue Dashboard! 📈"
+    description: Monthly revenue - simple extract of month with a simple sum of revenue.
 
     type: dashboard 
-    tags: 
-      - retail
-    url: https://app.snowflake.com/us-west-2/zna84829/2021-08-12-tpch-monthly-gross-revenue-dBOt4xVYQ
+    url: http://localhost:13393/dashboard/1-revenue
     
     owner:
-      name: Darth Vader ⚡
-      email: vader@galactic_empire.com
+      name: Randy Pitcher ⚡
+      email: randy@work.com
 
     depends_on:
       - ref('monthly_gross_revenue')
@@ -34,10 +33,14 @@ metrics:
     label: Number of Customers
     tags: 
       - retail
-    model: ref('dim_customers')
+    model: ref('fct_order_items')
     description: "The number of customers"
 
-    type: count
+    calculation_method: count_distinct
+    expression: customer_key
+
+    timestamp: order_date
+    time_grains: [day, week, month, quarter, year]
 
     dimensions:
       - market_segment

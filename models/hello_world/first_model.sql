@@ -1,6 +1,5 @@
 
 select 
-    'Hello, World!'   as greeting, 
-    1/1               as numeric_value,
-    current_timestamp as now
+    1                 as id,
+    current_timestamp as processed_at
 

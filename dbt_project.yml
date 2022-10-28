@@ -16,6 +16,7 @@ models:
         +materialized: table
 
     hello_world:
+      +materialized: table
       +tags: 
         - hello_world
         - daily
