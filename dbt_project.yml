@@ -9,6 +9,7 @@ models:
 
     retail:
       +schema: retail
+      +warehouse: retail_wh
       +tags: 
         - retail
         - hourly

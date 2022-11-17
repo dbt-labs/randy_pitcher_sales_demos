@@ -1,0 +1,9 @@
+version: 2
+
+models:
+    - name: stg_regions
+      columns:
+        - name: name
+          tests:
+            - is_uppercase  
+            - dbt_expectations.expect_column_values_to_have_consistent_casing
