@@ -6,7 +6,7 @@ exposures:
     description: Monthly revenue - simple extract of month with a simple sum of revenue.
 
     type: dashboard 
-    url: http://localhost:13393/dashboard/1-revenue
+    url: http://localhost:13298/dashboard/1-revenue
     
     owner:
       name: Randy Pitcher ⚡
