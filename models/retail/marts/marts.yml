@@ -6,7 +6,7 @@ exposures:
     description: Monthly revenue - simple extract of month with a simple sum of revenue.
 
     type: dashboard 
-    url: http://localhost:13393/dashboard/1-revenue
+    url: https://app.hex.tech/dbtlabs_partner/app/4709906b-f581-4c2d-bed9-1ab8a046a9d9/latest
     
     owner:
       name: Randy Pitcher ⚡
