@@ -13,10 +13,10 @@ models:
         - retail
         - hourly
       marts:
-        +materialized: table
+        +materialized: view
 
     hello_world:
-      +materialized: table
+      +materialized: view
       +tags: 
         - hello_world
         - daily
