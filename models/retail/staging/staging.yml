@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: retail
-    database: raw
-    schema: tpch_sf001
+    catalog: randy_pitcher_workspace_raw
+    schema: tpch
     tags: 
       - retail
     tables:

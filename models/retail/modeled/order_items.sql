@@ -21,11 +21,13 @@ select
     line_item.status_code                                                 as order_item_status_code,
     
     line_item.extended_price/nullif(line_item.quantity, 0)                as base_price,
-    base_price * (1 - line_item.discount_percentage)                      as discounted_price,
+    line_item.extended_price/nullif(line_item.quantity, 0) * (1 - line_item.discount_percentage)                     
+                                                                          as discounted_price,
     line_item.extended_price * (1 - line_item.discount_percentage)        as discounted_item_sales_amount,
     -1 * line_item.extended_price * line_item.discount_percentage         as item_discount_amount,
-    (gross_item_sales_amount + item_discount_amount) * line_item.tax_rate as item_tax_amount,
-    gross_item_sales_amount + item_discount_amount + item_tax_amount      as net_item_sales_amount
+    (line_item.extended_price + (-1 * line_item.extended_price * line_item.discount_percentage)) * line_item.tax_rate as item_tax_amount,
+    line_item.extended_price + (-1 * line_item.extended_price * line_item.discount_percentage) + 
+        (line_item.extended_price + (-1 * line_item.extended_price * line_item.discount_percentage)) * line_item.tax_rate      as net_item_sales_amount
 
 from 
     {{ ref('stg_orders') }} orders inner join {{ ref('stg_line_items') }} line_item 
