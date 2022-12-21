@@ -1,5 +1,5 @@
 select
-    r_regionkey as region_key,
+    r_regionkey as region_keyykl,
     r_name      as name,
     r_comment   as comment
 
