@@ -4,7 +4,7 @@
     {% if target.name == 'default' %}
         {{target.schema}}__{{default_schema}}
 
-    {% elif target.name == 'pr_testing' %}
+    {% elif target.name == 'ci' %}
         {{target.schema}}__{{default_schema}}
 
     {% elif 'production' in target.name %}
