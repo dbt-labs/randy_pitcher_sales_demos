@@ -11,6 +11,7 @@ select
     order_item.order_item_key,
     order_item.order_key,
     order_item.order_date,
+    date_trunc('MONTH', order_item.order_date)::date as order_month,
     order_item.customer_key,
     order_item.part_key,
     order_item.supplier_key,
