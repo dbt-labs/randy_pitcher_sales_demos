@@ -1,5 +1,5 @@
 {%- macro standardize_timestamp(timestamp_column) -%}
 
-  CONVERT_TIMEZONE('America/New_York', {{ timestamp_column }})::TIMESTAMP_NTZ
+  to_utc_timestamp({{ timestamp_column }}, 'America/New_York')
 
 {%- endmacro -%}
