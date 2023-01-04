@@ -1,11 +1,8 @@
 {%- macro generate_schema_name(custom_schema_name, node) -%}
     {% set default_schema = env_var('DBT_DEFAULT_SCHEMA') %}
 
-    {% if target.name == 'default' %}
-        {{target.schema}}__{{default_schema}}
-
-    {% elif target.name == 'pr_testing' %}
-        {{target.schema}}__{{default_schema}}
+    {% if target.name == 'default' or 'ci' in target.name.lower() or 'test' in target.name.lower() %}
+        {{target.schema}}
 
     {% elif 'production' in target.name %}
         {{ custom_schema_name if custom_schema_name else default_schema }}
