@@ -27,4 +27,4 @@ models:
         - daily
 
 
-on-run-end: "{{ drop_ci_schemas(schemas, dry_run=False, target_name_override='ci') }}"
+on-run-end: "{{ drop_ci_schemas(schemas, dry_run=False) }}"
