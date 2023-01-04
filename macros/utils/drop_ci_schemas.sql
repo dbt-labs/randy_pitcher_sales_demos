@@ -9,11 +9,11 @@ Args:
     - dry_run: bool -- When dry_run is true, the commands are logged rather than executed. This is true by default
 
 
-Example 1 - dry run of a list of schemas
+Example 1 - dry run of a list of schemas in a run operation using the override to force the macro to execute
     dbt run-operation drop_ci_schemas --args '{schemas_to_drop: ["schema_a", "schema_b"], target_name_override: "ci"}'
     
-Example 2 - live run in an on-run-end hook to drop any schema dbt created in the current run
-    dbt run-operation clean_workspace --args '{database: my_database, dry_run: False, schema_like: "cool_schema_%" }'
+Example 2 - live run in an on-run-end hook to drop any schema dbt created in the current run (unless running outside a ci target)
+    on-run-end: "{{ drop_ci_schemas(schemas, dry_run=False) }}"
 #}
 
 {% macro drop_ci_schemas(schemas_to_drop, dry_run=True, target_name_override=None) %}
