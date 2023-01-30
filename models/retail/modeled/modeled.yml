@@ -21,6 +21,15 @@ models:
         tests:
           - unique
           - not_null
+      - name: customer_key
+        tests:
+          - assert_good_foreign_key:
+              right_model: "{{ref('dim_customers')}}"
+      - name: order_item_count
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1  # (Optional)
+              max_value: 1 # (Optional)
                   
   - name: order_items
     columns:
