@@ -4,7 +4,7 @@ select
     sum(gross_item_sales_amount)  as gross_revenue
 
 from 
-    {{ref('fct_order_items')}}
+    {{ref('order_items')}}
 
 group by 
     order_month
