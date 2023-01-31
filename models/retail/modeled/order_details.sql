@@ -2,7 +2,10 @@ select
     items.order_item_key,
     items.order_key,
     items.order_date,
+<<<<<<< HEAD
         date_trunc(month, items.order_date) as order_month,
+=======
+>>>>>>> afeaff961e52f40d8804c1e8d2130638782492ab
     items.return_flag,
     items.line_number,
     items.net_item_sales_amount,
