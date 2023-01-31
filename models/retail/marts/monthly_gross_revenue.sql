@@ -4,7 +4,7 @@ select
     sum(gross_item_sales_amount)  as gross_revenue
 
 from 
-    {{ref('order_items')}}
+    {{ref('order_details')}}
 
 group by 
     order_month

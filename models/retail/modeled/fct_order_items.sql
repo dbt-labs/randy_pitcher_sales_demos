@@ -30,6 +30,3 @@ select
 from 
     {{ ref('stg_orders') }} orders inner join {{ ref('stg_line_items') }} line_item 
     on orders.order_key = line_item.order_key
-
-    inner join {{ ref('dim_customers') }} customers 
-    on orders.customer_key = customers.customer_key

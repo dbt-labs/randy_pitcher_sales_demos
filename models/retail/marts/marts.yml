@@ -17,7 +17,7 @@ metrics:
     label: Number of Customers
     tags: 
       - retail
-    model: ref('order_items')
+    model: ref('order_details')
     description: "The number of customers"
 
     calculation_method: count_distinct
