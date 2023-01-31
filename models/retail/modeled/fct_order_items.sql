@@ -1,46 +1,32 @@
-{{
-    config(
-        materialized='incremental',
-        unique_key='order_item_key',
-        incremental_key='order_date'
-    )
-}}
-
-
 select 
-    order_item.order_item_key,
-    order_item.order_key,
-    order_item.order_date,
-    order_item.customer_key,
-    order_item.part_key,
-    order_item.supplier_key,
-    order_item.order_item_status_code,
-    order_item.return_flag,
-    order_item.line_number,
-    order_item.ship_date,
-    order_item.commit_date,
-    order_item.receipt_date,
-    order_item.base_price,
-    order_item.discount_percentage,
-    order_item.discounted_price,
-    order_item.tax_rate,
-    order_item.quantity,
-    order_item.gross_item_sales_amount,
-    order_item.discounted_item_sales_amount,
-    order_item.item_discount_amount,
-    order_item.item_tax_amount,
-    order_item.net_item_sales_amount,
+    line_item.order_item_key,
+    orders.order_key,
+    orders.customer_key,
+    line_item.part_key,
+    line_item.supplier_key,
+    orders.order_date,
+    line_item.return_flag,
+    line_item.line_number,
+    line_item.ship_date,
+    line_item.commit_date,
+    line_item.receipt_date,
+    line_item.ship_mode,
+    line_item.extended_price,
+    line_item.quantity,
+    line_item.discount_percentage,
+    line_item.tax_rate,
 
-    part_supplier.cost as supplier_cost,
+    orders.status_code                                                    as order_status_code,
+    line_item.extended_price                                              as gross_item_sales_amount,
+    line_item.status_code                                                 as order_item_status_code,
+    
+    line_item.extended_price/nullif(line_item.quantity, 0)                as base_price,
+    base_price * (1 - line_item.discount_percentage)                      as discounted_price,
+    line_item.extended_price * (1 - line_item.discount_percentage)        as discounted_item_sales_amount,
+    -1 * line_item.extended_price * line_item.discount_percentage         as item_discount_amount,
+    (gross_item_sales_amount + item_discount_amount) * line_item.tax_rate as item_tax_amount,
+    gross_item_sales_amount + item_discount_amount + item_tax_amount      as net_item_sales_amount
 
-    customer.region,
-
-    regexp_replace(order_item.ship_mode, '\\s', '_') as ship_mode,
-    1                                                as order_item_count
-
-from
-    {{ ref('order_items') }} order_item 
-    inner join {{ ref('part_suppliers') }} part_supplier
-    on order_item.part_key = part_supplier.part_key and order_item.supplier_key = part_supplier.supplier_key
-    left outer join {{ref('dim_customers')}} customer
-    on order_item.customer_key = customer.customer_key
+from 
+    {{ ref('stg_orders') }} orders inner join {{ ref('stg_line_items') }} line_item 
+    on orders.order_key = line_item.order_key

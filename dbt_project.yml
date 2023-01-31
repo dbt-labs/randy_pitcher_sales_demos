@@ -1,30 +1,34 @@
 config-version: 2
 
-name: 'randy_pitcher_workspace'
-version: '2.0.0'
+name: randy_pitcher_workspace
+version: 2023.1.30
 
 models:
   randy_pitcher_workspace:
-    +materialized: view
-
     retail:
-      +schema: retail
-      +tags: 
-        - retail
-        - hourly
+      +tags: hourly
       marts:
         +materialized: table
+        
 
-    hello_world:
-      +materialized: table
-      +tags: 
-        - hello_world
-        - daily
 
-    utils:
-      +tags: 
-        - utils
-        - daily
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 on-run-end: "{{ drop_ci_schemas(schemas, dry_run=False) }}"

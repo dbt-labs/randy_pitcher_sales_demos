@@ -1,5 +1,3 @@
-
-
 select
     o_orderkey      as order_key,
     o_custkey       as customer_key,
