@@ -13,7 +13,7 @@ models:
 
 
 metrics:
-  - name:  gross_revenue
+  - name:  total_revenue
     label: Total Revenue
     tags: 
       - retail
