@@ -13,6 +13,25 @@ models:
 
 
 metrics:
+  - name:  gross_revenue
+    label: Total Revenue
+    tags: 
+      - retail
+    model: ref('order_details')
+    description: "The revenue made from selling goods and services"
+
+    calculation_method: sum
+    expression: gross_revenue
+
+    timestamp: order_date
+    time_grains: [day, week, month, quarter, year]
+
+    dimensions:
+      - market_segment
+      - nation
+      - region
+      - name
+
   - name:  num_customers
     label: Number of Customers
     tags: 
@@ -30,11 +49,12 @@ metrics:
       - market_segment
       - nation
       - region
+      - name
     
     filters:
-      - field: account_balance
-        operator: '>'
-        value: '0'
+      - field: name
+        operator: '!='
+        value: 'null'
       - field: name
         operator: '!='
         value: "''"
