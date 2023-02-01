@@ -1,12 +1,12 @@
 version: 2
 
 models:
-  - name: monthly_gross_revenue
+  - name: monthly_revenue
     columns:
       - name: ORDER_MONTH
         tests:
           - not_null
-      - name: GROSS_REVENUE
+      - name: TOTAL_REVENUE
         tests:
           - not_null
           - greater_than
@@ -32,12 +32,12 @@ metrics:
       - region
       - customer_name
 
-  - name:  num_customers
-    label: Number of Customers
+  - name:  total_active_customers
+    label: Total Active Customers
     tags: 
       - retail
     model: ref('order_details')
-    description: "The number of customers"
+    description: Sum of unique active customers
 
     calculation_method: count_distinct
     expression: customer_key
@@ -53,9 +53,13 @@ metrics:
 
 
 exposures:
-  - name: monthly_gross_revenue_dashboard
+  - name: revenue_dashboard
     label: "Revenue Dashboard! 📈"
-    description: Monthly revenue - simple extract of month with a simple sum of revenue.
+    description: Total revenue dashboard
+    tags: 
+      - retail
+      - board
+      - csuite
 
     type: dashboard 
     url: https://app.hex.tech/dbtlabs_partner/app/4709906b-f581-4c2d-bed9-1ab8a046a9d9/latest
@@ -65,4 +69,4 @@ exposures:
       email: randy@work.com
 
     depends_on:
-      - ref('monthly_gross_revenue')
+      - ref('monthly_revenue')

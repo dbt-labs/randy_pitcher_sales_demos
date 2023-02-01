@@ -1,7 +1,7 @@
 
 select
     order_month,
-    sum(gross_revenue) as gross_revenue
+    sum(gross_revenue) as total_revenue
 
 from {{ref('order_details')}}
 
