@@ -30,7 +30,7 @@ metrics:
       - market_segment
       - nation
       - region
-      - name
+      - customer_name
 
   - name:  num_customers
     label: Number of Customers
@@ -49,7 +49,7 @@ metrics:
       - market_segment
       - nation
       - region
-      - name
+      - customer_name
     
     filters:
       - field: name
