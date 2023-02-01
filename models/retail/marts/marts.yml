@@ -50,14 +50,6 @@ metrics:
       - nation
       - region
       - customer_name
-    
-    filters:
-      - field: name
-        operator: '!='
-        value: 'null'
-      - field: name
-        operator: '!='
-        value: "''"
 
 
 exposures:
