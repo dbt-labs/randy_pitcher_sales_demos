@@ -1,0 +1,1 @@
+select * from {{ ref('monthly_revenue') }}
