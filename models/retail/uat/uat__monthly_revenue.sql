@@ -1,7 +1,6 @@
 {{
     config(
         tags='uat',
-        database='randy_pitcher_workspace_uat',
         schema='uat'
     )
 }}
