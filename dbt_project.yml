@@ -9,6 +9,10 @@ models:
       +tags: hourly
       marts:
         +materialized: table
+      
+      staging:
+        +group: randy_pitcher_workspace__private
+        +access: private
         
 
 
