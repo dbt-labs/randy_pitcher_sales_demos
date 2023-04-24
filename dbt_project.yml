@@ -1,7 +1,7 @@
 config-version: 2
 
 name: randy_pitcher_workspace
-version: 2023.1.30
+version: 1.5.0
 
 models:
   randy_pitcher_workspace:
@@ -9,6 +9,10 @@ models:
       +tags: hourly
       marts:
         +materialized: table
+      
+      staging:
+        +group: randy_pitcher_workspace__private
+        +access: private
         
 
 

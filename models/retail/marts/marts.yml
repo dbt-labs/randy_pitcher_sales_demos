@@ -12,46 +12,6 @@ models:
           - greater_than
 
 
-metrics:
-  - name:  total_revenue
-    label: Total Revenue
-    tags: 
-      - retail
-    model: ref('order_details')
-    description: "The revenue made from selling goods and services"
-
-    calculation_method: sum
-    expression: gross_revenue
-
-    timestamp: order_date
-    time_grains: [day, week, month, quarter, year]
-
-    dimensions:
-      - market_segment
-      - nation
-      - region
-      - customer_name
-
-  - name:  total_active_customers
-    label: Total Active Customers
-    tags: 
-      - retail
-    model: ref('order_details')
-    description: Sum of unique active customers
-
-    calculation_method: count_distinct
-    expression: customer_key
-
-    timestamp: order_date
-    time_grains: [day, week, month, quarter, year]
-
-    dimensions:
-      - market_segment
-      - nation
-      - region
-      - customer_name
-
-
 exposures:
   - name: revenue_dashboard
     label: "Revenue Dashboard! 📈"

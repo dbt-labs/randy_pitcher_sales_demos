@@ -1,0 +1,11 @@
+groups:
+  - name: randy_pitcher_workspace__private
+    owner:
+      name: ⚡🎷 Randy Pitcher
+      email: randy.pitcher@dbtlabs.com
+
+
+  - name: randy_pitcher_workspace__public
+    owner:
+      name: ⚡🎷 Randy Pitcher
+      email: randy.pitcher@dbtlabs.com
