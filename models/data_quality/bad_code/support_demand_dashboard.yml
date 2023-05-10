@@ -1,0 +1,17 @@
+exposures:
+  - name: support_demand_dashboard
+    label: "Support Demand 🤖"
+    description: Demand for customer support broken down by dimensions important for demand forecasting and business planning
+    tags: 
+      - customer_success
+      - csuite
+
+    type: dashboard 
+    url: https://app.sigmacomputing.com/dbt-labs/workbook/retail-revenue-by-market-segment-63tiUyuCN0X5TBwKrYpL4D
+    
+    owner:
+      name: Randy Pitcher ⚡
+      email: randy@work.com
+
+    depends_on:
+      - ref('support_demand')
