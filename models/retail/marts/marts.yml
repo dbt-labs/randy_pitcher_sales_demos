@@ -1,5 +1,3 @@
-version: 2
-
 models:
   - name: monthly_revenue
     columns:
@@ -10,23 +8,3 @@ models:
         tests:
           - not_null
           - greater_than
-
-
-exposures:
-  - name: revenue_dashboard
-    label: "Revenue Dashboard! 📈"
-    description: Total revenue dashboard
-    tags: 
-      - retail
-      - board
-      - csuite
-
-    type: dashboard 
-    url: https://app.hex.tech/dbtlabs_partner/app/4709906b-f581-4c2d-bed9-1ab8a046a9d9/latest
-    
-    owner:
-      name: Randy Pitcher ⚡
-      email: randy@work.com
-
-    depends_on:
-      - ref('monthly_revenue')
