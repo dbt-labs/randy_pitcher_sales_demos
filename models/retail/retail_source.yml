@@ -4,8 +4,19 @@ sources:
   - name: retail
     database: raw
     schema: tpch_sf001
+    loaded_at_field: current_timestamp
     tags: 
       - retail
+
+    freshness:
+      warn_after:
+        count: 1
+        period: hour
+      error_after:
+        count: 6
+        period: hour
+
+
       
     tables:
       - name: orders

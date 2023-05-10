@@ -6,12 +6,13 @@ version: 1.5.0
 models:
   randy_pitcher_workspace:
     retail:
-      +tags: hourly
+      +tags: ['hourly', 'retail']
+      +group: randy_pitcher_workspace__retail
+      
       marts:
         +materialized: table
       
       staging:
-        +group: randy_pitcher_workspace__private
         +access: private
         
 
