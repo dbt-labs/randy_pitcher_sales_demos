@@ -1,7 +1,7 @@
 exposures:
-  - name: customer_support_activity_dashboard
-    label: "Support Demand 🤖"
-    description: Demand for customer support broken down by dimensions important for demand forecasting and business planning
+  - name: customer_support_demand_dashboard
+    label: "Customer Support Demand 🤖"
+    description: Demand for customer support broken down by dimensions important for headcount forecasting and business planning
     tags: 
       - customer_success
       - csuite
@@ -14,4 +14,4 @@ exposures:
       email: randy@work.com
 
     depends_on:
-      - ref('customer_support_activity')
+      - ref('customer_support_demand_by_region')

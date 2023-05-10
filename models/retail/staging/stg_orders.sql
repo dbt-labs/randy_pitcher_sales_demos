@@ -6,7 +6,7 @@ select
     {{modernize_legacy_date('o_orderdate', from=source('retail', 'orders'))}} as order_date,
     o_orderpriority as priority_code,
     o_clerk         as clerk_name,
-    o_shippriority  as ship_priority,
+    o_shippriority  as ship_priority
 
 from 
     {{ source('retail', 'orders') }}
