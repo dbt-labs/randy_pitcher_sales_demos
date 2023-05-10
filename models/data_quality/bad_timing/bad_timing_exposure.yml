@@ -1,7 +1,7 @@
 exposures:
-  - name: customer_traffic_dashboard
-    label: "Customer Traffic ↗️↘️↗️↘️"
-    description: User traffic broken down by dimensions - important for demand forecasting and business planning
+  - name: application_traffic_dashboard
+    label: "Aplication Traffic ↗️↘️↗️↘️"
+    description: Application user traffic broken down by dimensions important for demand forecasting and business planning
     tags: 
       - infra
       - marketing
@@ -15,4 +15,4 @@ exposures:
       email: randy@work.com
 
     depends_on:
-      - ref('customer_traffic')
+      - ref('application_traffic')
