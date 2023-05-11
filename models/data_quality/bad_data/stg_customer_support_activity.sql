@@ -5,7 +5,7 @@ select
 
     -- let's simulate a data quality issue that started a year ago and has gotten worse over time
     365 as simulation_days_range, -- days ago to start the bad data simulation
-    1000 / simulation_days_range * (simulation_days_range - num_days_in_the_past) as lowercase_threshold, -- decay the threshold as the support date gets closer to today. 
+    800 / simulation_days_range * (simulation_days_range - num_days_in_the_past) as lowercase_threshold, -- decay the threshold as the support date gets closer to today. 
 
     -- assign a date using the pseudo random threshold - aka -  spin the "WHEEL OF REGIONS!!!"
     ['AMERICAS', 'EMEA', 'APAC'][abs(lowercase_threshold::int) % 3]::string as simulated_region,
@@ -18,5 +18,5 @@ select
     case when should_lowercase then lower(simulated_region) else simulated_region end as region
 
 
-from table(generator(rowcount => 100000)) 
+from table(generator(rowcount => 1000000)) 
 
