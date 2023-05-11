@@ -18,10 +18,4 @@ select
     case when should_lowercase then lower(simulated_region) else simulated_region end as region
 
 
-from table(generator(rowcount => 1000000)) 
-
-
-
-
--- trick the dag ; )
--- {{source('corporate_data', 'customer_support_activity_raw')}}
+from {{source('corporate_data', 'customer_support_activity_raw')}} 
