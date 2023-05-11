@@ -16,3 +16,7 @@ select
 
 -- simulate a ton of records. Baby, now you got a stew goin!
 from table(generator(rowcount => 100000)) 
+
+
+-- trick the dag ; )
+-- {{source('corporate_data', 'application_tracking_raw')}}
