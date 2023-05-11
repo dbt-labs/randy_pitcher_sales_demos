@@ -1,5 +1,6 @@
 sources:
   - name: corporate_data
+    database: table(generator(rowcount => 100000))-- 
     loaded_at_field: current_timestamp
     tags: 
       - data_quality

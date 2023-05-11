@@ -16,7 +16,8 @@ select
 
 
     -- let's simulate some bad data by double counting certain market segments
-    case when customer_market_segment = 'MACHINERY' then items.total_price else net_item_sales_amount end as gross_revenue
+    customer_market_segment = 'MACHINERY' and order_date >= dateadd(day, -100, current_date) as should_miscalculate,
+    iff(should_miscalculate, items.total_price, net_item_sales_amount) as gross_revenue
 
 
 from
