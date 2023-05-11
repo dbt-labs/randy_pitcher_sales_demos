@@ -20,6 +20,7 @@ select
     line_item.extended_price                                              as gross_item_sales_amount,
     line_item.status_code                                                 as order_item_status_code,
     
+    orders.total_price                                                    as total_price,
     line_item.extended_price/nullif(line_item.quantity, 0)                as base_price,
     base_price * (1 - line_item.discount_percentage)                      as discounted_price,
     line_item.extended_price * (1 - line_item.discount_percentage)        as discounted_item_sales_amount,
