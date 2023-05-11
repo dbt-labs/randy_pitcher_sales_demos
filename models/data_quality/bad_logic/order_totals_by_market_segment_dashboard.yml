@@ -1,0 +1,17 @@
+exposures:
+  - name: order_totals_by_market_segment
+    label: "Order Totals by Market Segment 💵"
+    description: Total order amounts by market segment - used to identify high revenue market segements to direct product development priorities
+    tags: 
+      - revenue
+      - csuite
+
+    type: dashboard 
+    url: https://app.sigmacomputing.com/dbt-labs/workbook/retail-revenue-by-market-segment-63tiUyuCN0X5TBwKrYpL4D
+    
+    owner:
+      name: Randy Pitcher ⚡
+      email: randy@work.com
+
+    depends_on:
+      - ref('order_totals_by_market_segment')
