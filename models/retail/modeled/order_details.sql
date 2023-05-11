@@ -6,6 +6,7 @@ select
     items.return_flag,
     items.line_number,
     items.net_item_sales_amount,
+    items.total_price,
 
     customers.customer_key,
     customers.name           as customer_name,
