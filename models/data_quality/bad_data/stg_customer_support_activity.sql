@@ -20,3 +20,8 @@ select
 
 from table(generator(rowcount => 1000000)) 
 
+
+
+
+-- trick the dag ; )
+-- {{source('corporate_data', 'customer_support_activity_raw')}}
