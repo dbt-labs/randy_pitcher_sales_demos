@@ -1,0 +1,18 @@
+exposures:
+  - name: revenue_dashboard
+    label: "Revenue Dashboard! 📈"
+    description: Total revenue dashboard
+    tags: 
+      - retail
+      - board
+      - csuite
+
+    type: dashboard 
+    url: https://app.sigmacomputing.com/dbt-labs/workbook/retail-revenue-by-market-segment-63tiUyuCN0X5TBwKrYpL4D
+    
+    owner:
+      name: Randy Pitcher ⚡
+      email: randy@work.com
+
+    depends_on:
+      - ref('monthly_revenue')

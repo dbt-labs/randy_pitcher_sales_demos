@@ -5,13 +5,17 @@ version: 1.5.0
 
 models:
   randy_pitcher_workspace:
+    data_quality:
+      +tags: ['hourly', 'data_quality']
+
     retail:
-      +tags: hourly
+      +tags: ['hourly', 'retail']
+      +group: randy_pitcher_workspace__retail
+      
       marts:
         +materialized: table
       
       staging:
-        +group: randy_pitcher_workspace__private
         +access: private
         
 
