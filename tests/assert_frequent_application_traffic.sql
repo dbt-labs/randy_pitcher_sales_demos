@@ -1,9 +1,3 @@
-{{
-    config(
-        severity='error' if 'prod' in env_var('DBT_ENVIRONMENT_NAME') else 'warn'
-    )
-}}
-
 select 
     HLL(traffic_time)  as approx_distinct_times, -- hll = hyper log log = aproximate distinct count function
     traffic_time::date as traffic_date
