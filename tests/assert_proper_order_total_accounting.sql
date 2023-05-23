@@ -1,10 +1,3 @@
-{{
-    config(
-        severity='error' if 'prod' in env_var('DBT_ENVIRONMENT_NAME') else 'warn'
-    )
-}}
-
-
 select 
     order_key,
     customer_market_segment,
