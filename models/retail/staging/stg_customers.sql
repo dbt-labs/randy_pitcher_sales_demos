@@ -1,5 +1,5 @@
 select
-    c_custkey    as customer_key,
+    c_custkey    as customer_id,
     c_name       as name,
     c_address    as address, 
     c_nationkey  as nation_key,
