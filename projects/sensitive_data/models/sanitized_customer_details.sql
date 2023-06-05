@@ -1,0 +1,1 @@
+select 1 as ssn, 'Randy' as name, 'Hitsville, USA' as city
