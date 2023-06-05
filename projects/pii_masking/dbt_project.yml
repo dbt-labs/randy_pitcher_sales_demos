@@ -1,0 +1,19 @@
+name: pii_masking
+version: 1.5.0
+
+models:
+  pii_masking:
+    +materialized: table
+
+    sensitive:
+      +tags: pii
+      +group: sensitive
+      +access: protected
+      +schema: sensitive_data
+
+    sanitized:
+      +tags: sanitized_pii
+      +group: sanitized
+      +access: public
+      +schema: sanitized_sensitive_data
+

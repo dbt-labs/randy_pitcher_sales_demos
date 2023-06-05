@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: sanitized_sensitive_data
+    schema: "{{var('sanitized_sensitive_data_schema', 'sanitized_sensitive_data')}}" # default to production data masks 
+    database: "{{var('sanitized_sensitive_data_database', 'randy_pitcher_workspace_prod')}}" # default to production data masks 
+
+    tables:
+      - name: sanitized_customer_details

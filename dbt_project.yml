@@ -1,2 +1,5 @@
 name: randy_pitcher_sales_workspace
 version: 1.5.0
+
+target-path: 'builds/target'
+packages-install-path: 'builds/dbt_packages'
