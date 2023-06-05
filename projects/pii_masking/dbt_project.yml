@@ -5,6 +5,8 @@ models:
   pii_masking:
     +materialized: table
     +tags: pii
+    +docs:
+      node_color: "#9467BD"
 
     sensitive:
       +group: sensitive
@@ -14,4 +16,3 @@ models:
       +tags: sanitized_pii
       +group: sanitized
       +schema: sanitized_sensitive_data
-
