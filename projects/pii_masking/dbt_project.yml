@@ -8,12 +8,10 @@ models:
     sensitive:
       +tags: pii
       +group: sensitive
-      +access: protected
       +schema: sensitive_data
 
     sanitized:
       +tags: sanitized_pii
       +group: sanitized
-      +access: public
       +schema: sanitized_sensitive_data
 

@@ -1,10 +1,18 @@
 version: 2
 
 groups:
+  - name: sensitive
+    owner: 
+      name: 'Randy Pitcher 🌞'
   - name: sanitized
     owner: 
       name: 'Randy Pitcher 🌞'
 
-  - name: sensitive
-    owner: 
-      name: 'Randy Pitcher 🌞'
+
+models:
+  - name: pii_customer_details
+    group: sensitive
+    access: protected
+  - name: sanitized_customer_details
+    group: sanitized
+    access: public
