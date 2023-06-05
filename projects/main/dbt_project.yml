@@ -1,0 +1,44 @@
+config-version: 2
+
+name: randy_pitcher_workspace
+version: 1.5.0
+
+models:
+  randy_pitcher_workspace:
+    data_quality:
+      +tags: ['hourly', 'data_quality']
+
+    retail:
+      +tags: ['hourly', 'retail']
+      +group: randy_pitcher_workspace__retail
+      
+      marts:
+        +materialized: table
+      
+      staging:
+        +access: private
+        
+tests:
+  randy_pitcher_workspace:
+    +severity: warn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+on-run-end: "{{ drop_ci_schemas(schemas, dry_run=False) }}"
