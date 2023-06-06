@@ -1,0 +1,25 @@
+service: ef-api-conduit
+frameworkVersion: '3'
+
+plugins:
+  - serverless-better-credentials
+  - serverless-python-requirements
+  
+provider:
+  name: aws
+  runtime: python3.9
+  profile: sso
+  tags:
+    owner: randy.pitcher@dbtlabs.com
+    project: ef-api-conduit
+  stackTags:
+    owner: randy.pitcher@dbtlabs.com
+    project: ef-api-conduit
+
+functions:
+  ef_api_conduit:
+    handler: ef_api_conduit_handler.handle
+    events:
+      - httpApi:
+          path: /
+          method: get

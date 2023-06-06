@@ -1,0 +1,8 @@
+name: external_functions
+version: 1.5.0
+
+models:
+  external_functions:
+    +tags: pii
+    +docs:
+      node_color: "#2CA02C"

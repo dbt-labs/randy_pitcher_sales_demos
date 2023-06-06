@@ -2,3 +2,5 @@ target/
 dbt_modules/
 dbt_packages/
 logs/
+venv/
+node_modules
