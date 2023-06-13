@@ -7,8 +7,8 @@ select
     customer.market_segment,
 
     nation.name as nation,
-    region.name as region
-    -- IFF(MOD(customer_key::int, 2)::boolean, lower(region.name), region.name) as region
+    -- region.name as region
+    IFF(MOD(customer_key::int, 2)::boolean, lower(region.name), region.name) as region
 
 from
     {{ ref('stg_customers') }} customer 
