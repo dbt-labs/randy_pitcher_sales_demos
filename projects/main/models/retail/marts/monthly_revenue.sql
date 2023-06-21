@@ -1,12 +1,11 @@
 
 select
-    order_month, customer_market_segment,
+    customer_market_segment, region,
     sum(gross_revenue) as total_revenue
 
 from {{ref('order_details')}}
 
-group by order_month, customer_market_segment
-order by order_month desc
+group by customer_market_segment, region
 
 
 
