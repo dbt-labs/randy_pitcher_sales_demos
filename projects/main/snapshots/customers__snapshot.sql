@@ -1,11 +1,13 @@
-{% snapshot orders_snapshot %}
+{% snapshot customers__snapshot %}
     {{
         config(
             target_database=target.database,
             target_schema=target.schema,
-            unique_key="id",
+            
+            unique_key="CUSTOMER_KEY",
             strategy="timestamp",
-            updated_at="updated_at",
+            updated_at="INGESTED_AT",
+            invalidate_hard_deletes = True
         )
     }}
 
