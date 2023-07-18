@@ -1,5 +1,59 @@
-name: randy_pitcher_sales_workspace
+name: randy_pitcher_workspace
 version: 1.5.0
 
 target-path: 'builds/target'
 packages-install-path: 'builds/dbt_packages'
+
+
+
+models:
+  randy_pitcher_workspace:
+    pii:
+      +materialized: table
+      +tags: pii
+      +docs:
+        node_color: "#9467BD"
+
+      sensitive:
+        +group: sensitive
+        +schema: sensitive_data
+
+      sanitized:
+        +tags: sanitized_pii
+        +group: sanitized
+        +schema: sanitized_sensitive_data
+
+    retail:
+      +tags: ['hourly', 'retail']
+      +group: randy_pitcher_workspace__retail
+      
+      marts:
+        +materialized: table
+      
+      staging:
+        +access: private
+        
+tests:
+  randy_pitcher_workspace:
+    +severity: warn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+on-run-end: "{{ drop_ci_schemas(schemas, dry_run=False) }}"
