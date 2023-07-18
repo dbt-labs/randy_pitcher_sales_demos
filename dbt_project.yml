@@ -8,8 +8,20 @@ packages-install-path: 'builds/dbt_packages'
 
 models:
   randy_pitcher_workspace:
-    data_quality:
-      +tags: ['hourly', 'data_quality']
+    pii:
+      +materialized: table
+      +tags: pii
+      +docs:
+        node_color: "#9467BD"
+
+      sensitive:
+        +group: sensitive
+        +schema: sensitive_data
+
+      sanitized:
+        +tags: sanitized_pii
+        +group: sanitized
+        +schema: sanitized_sensitive_data
 
     retail:
       +tags: ['hourly', 'retail']
