@@ -1,2 +1,5 @@
 packages:
-  - local: "projects/{{env_var('DBT_PROJECT', 'main')}}"
+  - local: projects/pii_masking
+
+  - package: dbt-labs/dbt_utils
+    version: 1.0.0
