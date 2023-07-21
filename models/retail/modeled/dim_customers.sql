@@ -1,5 +1,5 @@
 select 
-    customer.customer_key,
+    customer.customer_id,
     customer.name,
     customer.address,
     customer.phone_number,
