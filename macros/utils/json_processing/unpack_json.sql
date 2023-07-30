@@ -1,5 +1,6 @@
-{%- macro unpack_json(model, variant_column_name) -%}
+{%- macro unpack_json(model, variant_column_name, column_prefix='') -%}
 
+  {% set prefix = column_prefix ~ '_' if column_prefix else '' %}
   {%- set variant_keys_query -%}
     WITH 
 
@@ -20,7 +21,7 @@
     {%- set keys = run_query(variant_keys_query).columns[0].values() -%}
 
     {% for key in keys %}
-        GET({{variant_column_name}}, '{{key}}') AS {{key}}{%- if not loop.last -%}, {%- endif -%}
+        GET({{variant_column_name}}, '{{key}}') AS {{prefix}}{{key}}{%- if not loop.last -%}, {%- endif -%}
     {% endfor %}
 
   {%- else -%}
