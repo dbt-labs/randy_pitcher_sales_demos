@@ -1,0 +1,21 @@
+sources:
+  - name: dbt_cloud
+    loader: Airbyte
+    database: RANDY_PITCHER_WORKSPACE_RAW
+    schema: AIRBYTE__DBT_CLOUD_RAW
+
+    loaded_at_field: _AIRBYTE_EMITTED_AT
+    freshness:
+      warn_after:
+        count: 20
+        period: hour
+
+    tables:
+      - name: _AIRBYTE_RAW_DBT_CLOUD_ACCOUNT_LICENSES
+      - name: _AIRBYTE_RAW_DBT_CLOUD_AUDIT_LOGS
+      - name: _AIRBYTE_RAW_DBT_CLOUD_ENVIRONMENTS
+      - name: _AIRBYTE_RAW_DBT_CLOUD_JOB_DEFINITIONS
+      - name: _AIRBYTE_RAW_DBT_CLOUD_JOB_NOTIFICATIONS
+      - name: _AIRBYTE_RAW_DBT_CLOUD_JOB_RUNS
+      - name: _AIRBYTE_RAW_DBT_CLOUD_PROJECTS
+      - name: _AIRBYTE_RAW_DBT_CLOUD_USERS
