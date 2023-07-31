@@ -13,7 +13,6 @@ select
     count(run_id) as run_count,
     avg(run_duration_in_seconds) as run_avg_duration,
     1/3 as err
-    
 
 from {{ ref('fct_dbt_cloud_job_runs') }}
 
