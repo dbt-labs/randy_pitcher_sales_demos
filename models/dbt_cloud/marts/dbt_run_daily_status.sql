@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized='table'
+    )
+}}
+
 select 
     to_timestamp_ntz(run_created_at)::date as created_at_date,
     run_status_humanized::string as run_status,
