@@ -11,3 +11,6 @@ select
 from 
     {{ ref('stg_dbt_cloud_job_runs') }} runs left outer join {{ ref('dim_dbt_cloud_jobs') }} jobs
     on runs.run_job_id = jobs.job_id
+
+where
+    jobs.job_project_id = '28148' -- snowflake dbt project in randy_pitcher_workspace

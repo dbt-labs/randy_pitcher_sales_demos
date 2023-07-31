@@ -33,6 +33,9 @@ models:
       staging:
         +access: private
         
+    dbt_cloud:
+      +tags: ['dbt_cloud', 'daily']
+
 tests:
   randy_pitcher_workspace:
     +severity: warn

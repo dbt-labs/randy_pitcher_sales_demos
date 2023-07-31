@@ -1,0 +1,25 @@
+models:
+  - name: stg_dbt_cloud_environments
+    columns:
+      - name: environment_id
+        tests:
+          - not_null
+          - unique
+  - name: stg_dbt_cloud_projects
+    columns:
+      - name: project_id
+        tests:
+          - not_null
+          - unique
+  - name: stg_dbt_cloud_job_definitions
+    columns:
+      - name: job_id
+        tests:
+          - not_null
+          - unique
+  - name: stg_dbt_cloud_job_runs
+    columns:
+      - name: run_id
+        tests:
+          - not_null
+          - unique
