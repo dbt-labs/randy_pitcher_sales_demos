@@ -1,8 +1,8 @@
 {{
     config(
         materialized='incremental',
-        incremental_key = 'loaded_at',
-        unique_key = 'loaded_at'
+        incremental_key = 'loaded_at_hour',
+        unique_key = 'loaded_at_hour'
     )
 }}
 
