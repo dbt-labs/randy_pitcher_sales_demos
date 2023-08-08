@@ -7,10 +7,10 @@
 }}
 
 select
-    count(_airbyte_ab_id) as record_count,
-    DATE_TRUNC('hour', _AIRBYTE_EMITTED_AT) as loaded_at_hour
+    count(run_id) as record_count,
+    DATE_TRUNC('hour', run_loaded_at) as loaded_at_hour
 
 
-from {{source('dbt_cloud', '_AIRBYTE_RAW_DBT_CLOUD_JOB_RUNS')}}
+from {{ ref('stg_dbt_cloud_job_runs') }}
 
 group by all
