@@ -26,7 +26,17 @@ untyped as (
         )
 
     from unpacked
+),
+
+deduped as (
+    select 
+        *, 
+        row_number() over(partition by run_id order by run_loaded_at asc) as row_num
+
+    from untyped
+
+    qualify row_num = 1
 )
 
 
-select * from untyped
+select * exclude row_num from deduped
