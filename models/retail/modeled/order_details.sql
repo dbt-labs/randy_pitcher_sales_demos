@@ -1,3 +1,9 @@
+{{
+    config(
+        tag='hourly'
+    )
+}}
+
 select
     items.order_item_key,
     items.order_key,
