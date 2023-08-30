@@ -24,7 +24,6 @@ models:
         +schema: sanitized_sensitive_data
 
     retail:
-      +materialized: table
       +tags: ['hourly', 'retail']
       +group: randy_pitcher_workspace__retail
       
