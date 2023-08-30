@@ -2,7 +2,7 @@ select
     items.order_item_key,
     items.order_key,
     items.order_date,
-        date_trunc(month, items.order_date) as order_month,
+    date_trunc(month, items.order_date) as order_month,
     items.return_flag,
     items.line_number,
     items.net_item_sales_amount,
