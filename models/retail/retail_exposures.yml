@@ -8,7 +8,7 @@ exposures:
       - csuite
 
     type: dashboard 
-    url: https://app.sigmacomputing.com/dbt-labs/workbook/retail-revenue-by-market-segment-63tiUyuCN0X5TBwKrYpL4D
+    url: https://app.sigmacomputing.com/dbt-labs/workbook/2023-08-30-Monthly-Revenue-2TW2wfCvk9UGFlqIPxS8gx/edit?:nodeId=i5VX0XwAgk
     
     owner:
       name: Randy Pitcher ⚡
